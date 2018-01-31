@@ -50,7 +50,7 @@ SynthDef(\monky,{arg freq=60,ffrq=600,rq=0.3,spd=5,dur=0.2,amp=0.2,att=0.1,rls=0
 	var sig, modOsc, env;
 	env = EnvGen.kr(Env.asr(att,1,rls),gate,doneAction:2);
 	modOsc = SinOsc.kr(spd,0,rng,1);
-	sig = RLPF.ar(SinOsc.ar(freq*modOsc, amp), ffrq, rq, amp);
+	sig = RLPF.ar(LFSaw.ar(freq*modOsc, amp), ffrq, rq, amp);
 	Out.ar(0,Pan2.ar(sig*env,pan))
 }).add;
 )
